@@ -1,3 +1,12 @@
+import { useTranslation } from 'react-i18next';
+
 export default function Home() {
-  return <>Home</>
+  const { t } = useTranslation();
+  return (
+    <>
+      <p>
+        {t('text')}
+      </p>
+    </>
+  );
 }

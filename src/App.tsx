@@ -1,11 +1,26 @@
-import { Outlet, Link } from 'react-router';
+import { useEffect } from 'react';
+import { Outlet, Link, useParams } from 'react-router';
+import { useTranslation } from 'react-i18next';
 import './App.css';
 
 function App() {
+  const { lng } = useParams();
+  const { i18n } = useTranslation();
+
+  useEffect(() => {
+    i18n.changeLanguage(lng);
+  }, [lng, i18n]);
   return (
     <>
-      <Link to="/zh-hant">繁體中文</Link>
-      <Link to="/en">English</Link>
+      <div>
+        <Link to="/zh-hant">
+          <button type="button">繁體中文</button>
+        </Link>
+
+        <Link to="/en">
+          <button type="button">English</button>
+        </Link>
+      </div>
       <Outlet />
     </>
   );
