@@ -11,22 +11,25 @@ function App() {
 
   useEffect(() => {
     i18n.changeLanguage(lng);
-
-    setTranslationPath(
-      pathname
-        .split('/')
-        .filter((_, i) => i >= 2)
-        .join('/')
-    );
   }, [lng, i18n, pathname]);
+
+  useEffect(() => {
+    const processPath = pathname
+      .split('/')
+      .filter((_, i) => i >= 2)
+      .join('/');
+
+    setTranslationPath( processPath ? `/${processPath}` : '');
+  }, [pathname]);
+
   return (
     <>
       <div>
-        <Link to={`/zh-hant/${translationPath}`}>
+        <Link to={`/zh-hant${translationPath}`}>
           <button type="button">繁體中文</button>
         </Link>
 
-        <Link to={`/en/${translationPath}`}>
+        <Link to={`/en${translationPath}`}>
           <button type="button">English</button>
         </Link>
       </div>
