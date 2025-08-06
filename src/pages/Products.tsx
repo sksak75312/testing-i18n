@@ -1,3 +1,11 @@
+import { useTranslation } from 'react-i18next';
+
 export default function Products() {
-  return <>Products</>;
+  const { t } = useTranslation();
+
+  return (
+    <>
+      <p>{t('products')}</p>
+    </>
+  );
 }
